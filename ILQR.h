@@ -115,14 +115,14 @@ struct ILQR
         // Eq 11:
         MatrixXd Hinv = Hi*H*Hi;
 #if defined(MITROVIC) // also Todorov 2012 but not Tassa/Todorov 2014 (or studyWolf)
-        Hinv = 2*Hi - Hinv; // corrected (assuming Hi is symmetric)
+      //  Hinv = 2*Hi - Hinv; // corrected (assuming Hi is symmetric) // not apparenltly working
 #endif
         // Eq 5:
         MatrixXd NBPA = N[k].transpose() + B[k].transpose()*P*A[k]; // Tassa: Q_ux, Mitrovic G
         Ls[k] = Hi*NBPA;
         P = Q[k] + A[k].transpose()*P*A[k] - NBPA.transpose()*Hinv*NBPA;
 
-        VectorXd rBp = r[k] = B[k].transpose()*p; // Tassa: Q_u, Mitrovic g
+        VectorXd rBp = r[k] + B[k].transpose()*p; // Tassa: Q_u, Mitrovic g
         ls[k] = Hi*rBp; 
         p = q[k] + A[k].transpose()*p - NBPA.transpose()*Hinv*rBp;
       }
