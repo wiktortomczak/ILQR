@@ -16,6 +16,9 @@ const double convergenceThreshold = 1e-3;
 const int maxLambda = 1000;
 const int maxIterations = 100;
 #endif
+
+double timeDelta;  // Set in main.cpp.
+
 // Iterative Linear Quadratic Regulator
 // variable names match the Linear Quadratic Regulator (wikipedia)
 // which are also the Mitrovic 2010 (and Todorov 05) names unless stated otherwise
